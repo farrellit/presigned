@@ -5,6 +5,10 @@ session = botocore.session.get_session()
 client = session.create_client('s3')
 presigned_url = client.generate_presigned_url(
     'get_object',
-    Params={'Bucket':sys.argv[1],'Key': sys.argv[2] }
+    Params={
+        'Bucket':sys.argv[1],
+        'Key': sys.argv[2], 
+    },
+    ExpiresIn=sys.argv[3] # expiry
 )
 print(presigned_url)
